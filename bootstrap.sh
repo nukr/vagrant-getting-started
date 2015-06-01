@@ -10,7 +10,7 @@ wget -qO- http://download.rethinkdb.com/apt/pubkey.gpg | sudo apt-key add -
 
 ############### update and install necessary package by apt ###############
 sudo apt-get update
-sudo apt-get install -y git-core curl nginx rethinkdb build-essential
+sudo apt-get install -y git-core curl nginx rethinkdb build-essential python-pip
 ############### update and install necessary package by apt ###############
 
 
@@ -30,6 +30,8 @@ cd /home/vagrant/redis-3.0.1/utils && sudo ./vagrant_install_server.sh
 ############### setup rethinkdb ###############
 sudo cp /vagrant/rethinkdb/instance1.conf /etc/rethinkdb/instances.d/instance1.conf
 sudo service rethinkdb start
+sudo pip install rethinkdb # rethinkdb python driver for rethinkdb dump and restore
+rethinkdb restore --force '/vagrant/rethinkdb/rethinkdb_dump_2015-06-01T17:19:20.tar.gz'
 ############### setup rethinkdb ###############
 
 
