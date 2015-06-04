@@ -46,3 +46,8 @@ source /home/vagrant/.profile
 nvm install iojs
 nvm alias default iojs
 ############### setup iojs ###############
+
+
+############### post install adjust ###############
+sudo ntpdate time.stdtime.gov.tw
+############### post install adjust ###############
