@@ -31,12 +31,12 @@ cd /home/vagrant/redis-3.0.1/utils && sudo ./vagrant_install_server.sh
 sudo cp /vagrant/rethinkdb/instance1.conf /etc/rethinkdb/instances.d/instance1.conf
 sudo service rethinkdb start
 sudo pip install rethinkdb # rethinkdb python driver for rethinkdb dump and restore
-rethinkdb restore --force '/vagrant/rethinkdb/rethinkdb_dump_2015-06-01T17:19:20.tar.gz'
+rethinkdb restore --force '/vagrant/rethinkdb/rethinkdb_dump_2015-06-09T14:14:37.tar.gz'
 ############### setup rethinkdb ###############
 
 
 ############### setup nvm ###############
-curl https://raw.githubusercontent.com/creationix/nvm/v0.23.3/install.sh | bash
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.25.4/install.sh | bash
 echo "source /home/vagrant/.nvm/nvm.sh" >> /home/vagrant/.profile
 source /home/vagrant/.profile
 ############### setup nvm ###############
@@ -46,6 +46,13 @@ source /home/vagrant/.profile
 nvm install iojs
 nvm alias default iojs
 ############### setup iojs ###############
+
+############### setup taipei-steak-api ###############
+npm install pm2 -g
+git clone https://github.com/nukr/taipei-steak-api.git
+cd taipei-steak-api && npm i
+pm2 start app.js --next-gen-js -n taipei-steak-api
+############### setup taipei-steak-api ###############
 
 
 ############### post install adjust ###############
