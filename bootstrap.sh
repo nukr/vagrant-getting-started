@@ -85,4 +85,6 @@ cd ~
 
 ############### post install adjust ###############
 sudo ntpdate time.stdtime.gov.tw
+echo "1 * * * * root ntpdate time.stdtime.gov.tw" | sudo tee -a /etc/crontab
 ############### post install adjust ###############
+
