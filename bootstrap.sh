@@ -30,6 +30,8 @@ make && sudo make install
 cp /vagrant/redis/install_server.sh /home/vagrant/redis-3.0.1/utils/vagrant_install_server.sh
 cd /home/vagrant/redis-3.0.1/utils && sudo ./vagrant_install_server.sh
 cd ~
+rm -rf redis-3.0.1
+rm -rf redis-3.0.1.tar.gz
 ############### setup redis ###############
 
 
@@ -40,10 +42,13 @@ sudo pip install rethinkdb # rethinkdb python driver for rethinkdb dump and rest
 # rethinkdb restore --force '/vagrant/rethinkdb/rethinkdb_dump_2015-06-09T14:14:37.tar.gz'
 ############### setup rethinkdb ###############
 
+
 ############### download taipei_steak database ###############
 wget http://steak.nukr.tw/taipei_steak-latest.tar.gz
 tar zxvf taipei_steak-latest.tar.gz
 mongorestore -d taipei_steak --dir taipei_steak
+rm -rf taipei_steak
+rm -rf taipei_steak-latest.tar.gz
 ############### download taipei_steak database ###############
 
 
@@ -53,15 +58,21 @@ echo "source /home/vagrant/.nvm/nvm.sh" >> /home/vagrant/.profile
 source /home/vagrant/.profile
 ############### setup nvm ###############
 
+
 ############### setup iojs ###############
 nvm install iojs
 nvm alias default iojs
 ############### setup iojs ###############
 
+
 ############### mongodb to rethinkdb ###############
 git clone https://github.com/nukr/mongodb2rethinkdb.git
 cd mongodb2rethinkdb && npm i && npm start && cd ..
+rm -rf mongodb2rethinkdb
+sudo service mongod stop
+sudo apt-get remove -y mongodb-org
 ############### mongodb to rethinkdb ###############
+
 
 ############### setup taipei-steak-api ###############
 git clone https://github.com/nukr/taipei-steak-api.git
@@ -70,6 +81,7 @@ npm install pm2 -g
 pm2 start app.js --next-gen-js -n taipei-steak-api
 cd ~
 ############### setup taipei-steak-api ###############
+
 
 ############### post install adjust ###############
 sudo ntpdate time.stdtime.gov.tw
