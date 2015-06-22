@@ -15,7 +15,7 @@ wget -qO- http://download.rethinkdb.com/apt/pubkey.gpg | sudo apt-key add -
 
 ############### update and install necessary package by apt ###############
 sudo apt-get update
-sudo apt-get install -y git-core curl nginx rethinkdb build-essential python-pip mongodb-org
+sudo apt-get install -y git-core curl nginx rethinkdb build-essential python-pip mongodb-org htop
 ############### update and install necessary package by apt ###############
 
 
