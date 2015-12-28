@@ -7,11 +7,6 @@ sudo locale-gen zh_TW.UTF-8
 # echo "deb http://repo.mongodb.org/apt/ubuntu "$(lsb_release -sc)"/mongodb-org/3.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb.list
 # ############### setup mongodb ###############
 
-############### setup elasticsearch apt-key ###############
-wget -qO - https://packages.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
-echo "deb http://packages.elastic.co/elasticsearch/1.7/debian stable main" | sudo tee -a /etc/apt/sources.list.d/elasticsearch-1.7.list
-############### setup elasticsearch apt-key ###############
-
 ############### config apt for rethinkdb ###############
 source                                                                  \
   /etc/lsb-release &&                                                   \
@@ -32,7 +27,6 @@ sudo apt-get install -y  \
   python-pip             \
   htop                   \
   openjdk-8-jre-headless \
-  elasticsearch          \
   zsh                    \
   rethinkdb              \
   postgresql             \
@@ -127,12 +121,6 @@ npm install pm2 -g
 # pm2 start app.js --next-gen-js -n taipei-steak-api
 # cd ~
 # ############### setup taipei-steak-api ###############
-
-############### setup elasticsearch ###############
-sudo /usr/share/elasticsearch/bin/plugin --install river-rethinkdb --url http://goo.gl/JmMwTf
-sudo systemctl enable elasticsearch
-sudo systemctl start elasticsearch
-############### setup elasticsearch ###############
 
 ############### post install adjust ###############
 sudo ntpdate time.stdtime.gov.tw
